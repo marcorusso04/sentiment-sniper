@@ -1,0 +1,423 @@
+[
+  {
+    "product_id": "9283655041240",
+    "product_title": "The Complete Snowboard",
+    "rating": 2,
+    "review_text": "La tavola è arrivata con un graffio profondo sul bordo sinistro. Imballaggio pessimo, solo un foglio di plastica sottile. Deluso dall'acquisto.",
+    "reviewer_name": "Marco Bianchi",
+    "date": "2026-01-15",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Packaging"
+    ],
+    "summary": "La tavola è arrivata graffiata sul bordo sinistro a causa di un imballaggio insufficiente, lasciando il cliente deluso dell'acquisto."
+  },
+  {
+    "product_id": "9283655041240",
+    "product_title": "The Complete Snowboard",
+    "rating": 3,
+    "review_text": "Qualità nella media, niente di eccezionale. Il prezzo è alto per quello che offre. Mi aspettavo materiali migliori per questa fascia di prezzo.",
+    "reviewer_name": "Giulia Rossi",
+    "date": "2026-01-18",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Value"
+    ],
+    "summary": "Lo snowboard ha una qualità nella media con materiali non all'altezza del prezzo richiesto."
+  },
+  {
+    "product_id": "9283655041240",
+    "product_title": "The Complete Snowboard",
+    "rating": 1,
+    "review_text": "Accessori mancanti! Nella confezione non c'erano i bindingscrew inclusi nella descrizione. Ho dovuto contattare il supporto tre volte prima di ricevere risposta.",
+    "reviewer_name": "Luca Ferrari",
+    "date": "2026-01-22",
+    "source": "upload",
+    "categories": [
+      "Missing Accessories",
+      "Customer Service"
+    ],
+    "summary": "Il cliente non ha trovato le viti per i binding nella confezione e ha dovuto contattare il supporto tre volte prima di ricevere una risposta."
+  },
+  {
+    "product_id": "9283655041240",
+    "product_title": "The Complete Snowboard",
+    "rating": 4,
+    "review_text": "Buona tavola nel complesso ma la spedizione ha impiegato 3 settimane. Nessuna comunicazione sui ritardi. Il prodotto però è solido.",
+    "reviewer_name": "Anna Conti",
+    "date": "2026-02-01",
+    "source": "upload",
+    "categories": [
+      "Shipping",
+      "Customer Service",
+      "Quality"
+    ],
+    "summary": "La tavola è di buona qualità ma la spedizione ha richiesto 3 settimane senza alcuna comunicazione sui ritardi."
+  },
+  {
+    "product_id": "9283655041240",
+    "product_title": "The Complete Snowboard",
+    "rating": 2,
+    "review_text": "Il servizio clienti è stato inutile. Ho segnalato un difetto sulla superficie e mi hanno risposto dopo 10 giorni dicendo che era normale. Non è normale.",
+    "reviewer_name": "Roberto Marino",
+    "date": "2026-02-05",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Customer Service"
+    ],
+    "summary": "Il cliente ha riscontrato un difetto sulla superficie dello snowboard e il servizio clienti ha risposto in ritardo definendo il problema normale, cosa che il cliente contesta."
+  },
+  {
+    "product_id": "9283654910168",
+    "product_title": "The Collection Snowboard: Hydrogen",
+    "rating": 3,
+    "review_text": "Tavola discreta ma la durata nel tempo mi preoccupa. Dopo sole 5 uscite si vedono già segni di usura sulla coda. Per il prezzo mi aspettavo di più.",
+    "reviewer_name": "Sara Lombardi",
+    "date": "2026-01-10",
+    "source": "upload",
+    "categories": [
+      "Durability",
+      "Value"
+    ],
+    "summary": "Dopo sole 5 uscite la tavola mostra già segni di usura sulla coda, sollevando dubbi sulla durabilità rispetto al prezzo pagato."
+  },
+  {
+    "product_id": "9283654910168",
+    "product_title": "The Collection Snowboard: Hydrogen",
+    "rating": 2,
+    "review_text": "Imballaggio completamente inadeguato. La scatola era ammaccata e la tavola aveva un piccolo danno sul nose. Resi e cambi complicatissimi.",
+    "reviewer_name": "Paolo Greco",
+    "date": "2026-01-14",
+    "source": "upload",
+    "categories": [
+      "Packaging",
+      "Quality",
+      "Customer Service"
+    ],
+    "summary": "L'imballaggio era inadeguato e danneggiato, causando un danno alla tavola, e il processo di reso è risultato molto complicato."
+  },
+  {
+    "product_id": "9283654910168",
+    "product_title": "The Collection Snowboard: Hydrogen",
+    "rating": 1,
+    "review_text": "Prodotto non utilizzabile. Le viti dei binding non entrano nei fori perché sono leggermente fuori allineamento. Difetto di fabbrica evidente.",
+    "reviewer_name": "Chiara Esposito",
+    "date": "2026-01-20",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Usability"
+    ],
+    "summary": "I fori per le viti dei binding sono fuori allineamento a causa di un evidente difetto di fabbrica, rendendo lo snowboard inutilizzabile."
+  },
+  {
+    "product_id": "9283654910168",
+    "product_title": "The Collection Snowboard: Hydrogen",
+    "rating": 4,
+    "review_text": "Nel complesso soddisfatto ma il valore non giustifica il prezzo. Ho visto tavole simili a 80€ in meno con la stessa qualità costruttiva.",
+    "reviewer_name": "Matteo Romano",
+    "date": "2026-02-03",
+    "source": "upload",
+    "categories": [
+      "Value"
+    ],
+    "summary": "Il cliente è generalmente soddisfatto ma ritiene che il prezzo non sia giustificato dalla qualità costruttiva, che considera paragonabile a prodotti meno costosi."
+  },
+  {
+    "product_id": "9283655270616",
+    "product_title": "The Collection Snowboard: Liquid",
+    "rating": 2,
+    "review_text": "Spedizione lentissima e nessun tracking. Dopo 2 settimane ho dovuto chiamare io per sapere dove fosse il mio ordine. Esperienza frustrante.",
+    "reviewer_name": "Valentina Ricci",
+    "date": "2026-01-08",
+    "source": "upload",
+    "categories": [
+      "Shipping",
+      "Customer Service"
+    ],
+    "summary": "La spedizione è stata lentissima, senza tracking, e il cliente ha dovuto contattare autonomamente il supporto dopo due settimane per avere notizie del proprio ordine."
+  },
+  {
+    "product_id": "9283655270616",
+    "product_title": "The Collection Snowboard: Liquid",
+    "rating": 3,
+    "review_text": "La tavola scivola bene sulla neve fresca ma sulla neve dura perde molto grip. Usabilità limitata a certi contesti. Poteva essere specificato meglio.",
+    "reviewer_name": "Davide Moretti",
+    "date": "2026-01-25",
+    "source": "upload",
+    "categories": [
+      "Usability",
+      "Value"
+    ],
+    "summary": "La tavola offre buone prestazioni sulla neve fresca ma perde grip sulla neve dura, risultando limitata in certi contesti e con specifiche poco chiare."
+  },
+  {
+    "product_id": "9283655270616",
+    "product_title": "The Collection Snowboard: Liquid",
+    "rating": 1,
+    "review_text": "Mancano le istruzioni di montaggio e le viti di ricambio che erano elencate come incluse. Ho dovuto comprare tutto separatamente. Inaccettabile.",
+    "reviewer_name": "Elena Fontana",
+    "date": "2026-02-08",
+    "source": "upload",
+    "categories": [
+      "Missing Accessories"
+    ],
+    "summary": "Le istruzioni di montaggio e le viti di ricambio elencate come incluse non erano presenti nella confezione, costringendo il cliente ad acquistarle separatamente."
+  },
+  {
+    "product_id": "9283655237848",
+    "product_title": "The Collection Snowboard: Oxygen",
+    "rating": 4,
+    "review_text": "Buona qualità costruttiva ma la custodia protettiva inclusa si è rotta dopo il primo utilizzo. Materiale scadente per un accessorio che dovrebbe proteggere.",
+    "reviewer_name": "Simone De Luca",
+    "date": "2026-01-12",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Durability",
+      "Packaging"
+    ],
+    "summary": "La tavola ha una buona qualità costruttiva, ma la custodia protettiva inclusa si è rotta dopo il primo utilizzo, rivelando materiali scadenti per un accessorio protettivo."
+  },
+  {
+    "product_id": "9283655237848",
+    "product_title": "The Collection Snowboard: Oxygen",
+    "rating": 2,
+    "review_text": "Ho ricevuto la tavola sbagliata. Ho ordinato la misura 158 e mi è arrivata la 154. Il reso è stato gestito malissimo dal servizio clienti.",
+    "reviewer_name": "Federica Gallo",
+    "date": "2026-01-30",
+    "source": "upload",
+    "categories": [
+      "Missing Accessories",
+      "Customer Service"
+    ],
+    "summary": "Il cliente ha ricevuto una misura errata della tavola e il servizio clienti ha gestito il reso in modo molto insoddisfacente."
+  },
+  {
+    "product_id": "9283655237848",
+    "product_title": "The Collection Snowboard: Oxygen",
+    "rating": 3,
+    "review_text": "Qualità accettabile ma non eccellente. Il grafico si è già leggermente sbiadito dopo poche uscite. Mi aspettavo maggiore resistenza per questo prezzo.",
+    "reviewer_name": "Alessandro Bruno",
+    "date": "2026-02-10",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Durability",
+      "Value"
+    ],
+    "summary": "La grafica sbiadisce rapidamente dopo poche uscite e la qualità complessiva non soddisfa le aspettative per il prezzo richiesto."
+  },
+  {
+    "product_id": "9283654975704",
+    "product_title": "Selling Plans Ski Wax",
+    "rating": 2,
+    "review_text": "La cera si applica male e non dura. Dopo una mezza giornata sulle piste la tavola perde scorrevolezza. Prodotto deludente rispetto alla descrizione.",
+    "reviewer_name": "Martina Serra",
+    "date": "2026-01-05",
+    "source": "upload",
+    "categories": [
+      "Usability",
+      "Durability",
+      "Value"
+    ],
+    "summary": "La cera è difficile da applicare, perde efficacia dopo mezza giornata di utilizzo e non corrisponde alla descrizione del prodotto."
+  },
+  {
+    "product_id": "9283654975704",
+    "product_title": "Selling Plans Ski Wax",
+    "rating": 1,
+    "review_text": "Prodotto arrivato aperto e parzialmente usato. Imballaggio sigillato male. Impossibile capire se sia nuovo o reso. Chiederò rimborso.",
+    "reviewer_name": "Francesco Mancini",
+    "date": "2026-01-18",
+    "source": "upload",
+    "categories": [
+      "Packaging",
+      "Quality",
+      "Customer Service"
+    ],
+    "summary": "Il prodotto è arrivato aperto e parzialmente usato, con imballaggio sigillato male, rendendo impossibile determinare se fosse nuovo o un reso."
+  },
+  {
+    "product_id": "9283654975704",
+    "product_title": "Selling Plans Ski Wax",
+    "rating": 3,
+    "review_text": "Funziona discretamente su neve fresca ma è completamente inutile su neve artificiale. Limitazione non indicata nella descrizione del prodotto.",
+    "reviewer_name": "Silvia Costa",
+    "date": "2026-02-02",
+    "source": "upload",
+    "categories": [
+      "Usability",
+      "Value"
+    ],
+    "summary": "Il prodotto funziona su neve fresca ma è inefficace su neve artificiale, una limitazione non specificata nella descrizione."
+  },
+  {
+    "product_id": "9283655172312",
+    "product_title": "The Multi-managed Snowboard",
+    "rating": 4,
+    "review_text": "Tavola tecnicamente valida ma la spedizione è arrivata in ritardo di 12 giorni rispetto alla data stimata. Zero comunicazione proattiva dal venditore.",
+    "reviewer_name": "Nicola Russo",
+    "date": "2026-01-16",
+    "source": "upload",
+    "categories": [
+      "Shipping",
+      "Customer Service"
+    ],
+    "summary": "La tavola è tecnicamente valida, ma la spedizione ha subito un ritardo di 12 giorni senza alcuna comunicazione proattiva da parte del venditore."
+  },
+  {
+    "product_id": "9283655172312",
+    "product_title": "The Multi-managed Snowboard",
+    "rating": 2,
+    "review_text": "Il supporto clienti non risponde alle email. Ho inviato 4 messaggi in 2 settimane e non ho ricevuto alcuna risposta. Problema ancora irrisolto.",
+    "reviewer_name": "Carmen Vitale",
+    "date": "2026-01-28",
+    "source": "upload",
+    "categories": [
+      "Customer Service"
+    ],
+    "summary": "Il cliente ha contattato il supporto clienti 4 volte in 2 settimane senza ricevere alcuna risposta, lasciando il problema irrisolto."
+  },
+  {
+    "product_id": "9283655139544",
+    "product_title": "The Multi-location Snowboard",
+    "rating": 3,
+    "review_text": "Costruzione solida ma l'usabilità lascia a desiderare per i principianti. Troppo rigida per chi inizia, andava specificato che è una tavola avanzata.",
+    "reviewer_name": "Giorgio Pellegrini",
+    "date": "2026-02-06",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Usability"
+    ],
+    "summary": "La tavola ha una costruzione solida ma risulta troppo rigida e poco adatta ai principianti, senza che ciò fosse adeguatamente specificato."
+  },
+  {
+    "product_id": "9283655139544",
+    "product_title": "The Multi-location Snowboard",
+    "rating": 1,
+    "review_text": "Difetto strutturale grave: la laminazione si sta staccando sul bordo dopo sole 3 uscite. Durabilità pessima per un prodotto a questo prezzo.",
+    "reviewer_name": "Isabella Caruso",
+    "date": "2026-02-12",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Durability",
+      "Value"
+    ],
+    "summary": "La laminazione si stacca dal bordo dopo sole 3 uscite, evidenziando gravi problemi di qualità e durabilità rispetto al prezzo pagato."
+  },
+  {
+    "product_id": "9283655074008",
+    "product_title": "The Videographer Snowboard",
+    "rating": 4,
+    "review_text": "Buona tavola per riprese ma il valore non è all'altezza del prezzo. Si trovano alternative valide a meno. Packaging curato almeno.",
+    "reviewer_name": "Emanuele Ferrara",
+    "date": "2026-01-22",
+    "source": "upload",
+    "categories": [
+      "Value",
+      "Packaging"
+    ],
+    "summary": "La tavola è adatta alle riprese ma il rapporto qualità-prezzo è ritenuto insufficiente, anche se il packaging è apprezzato."
+  },
+  {
+    "product_id": "9283655074008",
+    "product_title": "The Videographer Snowboard",
+    "rating": 2,
+    "review_text": "Accessori per il montaggio della action cam non inclusi nonostante la descrizione li menzioni esplicitamente. Pubblicità ingannevole.",
+    "reviewer_name": "Rossella Montanari",
+    "date": "2026-02-01",
+    "source": "upload",
+    "categories": [
+      "Missing Accessories"
+    ],
+    "summary": "Gli accessori per il montaggio della action cam non sono stati inclusi nella confezione nonostante la descrizione del prodotto li menzioni esplicitamente."
+  },
+  {
+    "product_id": "9283654811864",
+    "product_title": "The Minimal Snowboard",
+    "rating": 3,
+    "review_text": "Design essenziale apprezzabile ma la qualità dei materiali è nella media bassa. Per il prezzo minimal mi aspettavo almeno una finitura migliore.",
+    "reviewer_name": "Lorenzo Marini",
+    "date": "2026-01-19",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Value"
+    ],
+    "summary": "Il design essenziale è apprezzato, ma la qualità dei materiali e le finiture sono ritenute insufficienti rispetto al prezzo pagato."
+  },
+  {
+    "product_id": "9283654811864",
+    "product_title": "The Minimal Snowboard",
+    "rating": 2,
+    "review_text": "Spedizione con corriere pessimo. Pacco lasciato fuori dalla porta in piena pioggia senza suonare. Tavola fortunatamente intatta ma imballaggio distrutto.",
+    "reviewer_name": "Paola Amato",
+    "date": "2026-02-04",
+    "source": "upload",
+    "categories": [
+      "Shipping",
+      "Packaging"
+    ],
+    "summary": "Il corriere ha lasciato il pacco fuori dalla porta sotto la pioggia senza suonare, con l'imballaggio completamente distrutto, anche se la tavola è risultata integra."
+  },
+  {
+    "product_id": "9283654779096",
+    "product_title": "The Inventory Not Tracked Snowboard",
+    "rating": 4,
+    "review_text": "Prodotto nella norma ma il servizio post-vendita è deludente. Ho chiesto informazioni sulla garanzia e non ho ancora ricevuto risposta dopo 3 settimane.",
+    "reviewer_name": "Massimo Leone",
+    "date": "2026-01-11",
+    "source": "upload",
+    "categories": [
+      "Customer Service"
+    ],
+    "summary": "Il prodotto è nella norma ma il servizio post-vendita è deludente, con nessuna risposta ricevuta dopo 3 settimane riguardo alla garanzia."
+  },
+  {
+    "product_id": "9283654779096",
+    "product_title": "The Inventory Not Tracked Snowboard",
+    "rating": 1,
+    "review_text": "Tavola completamente diversa dalle foto. Colori sbiaditi e grafica approssimativa. Sembra un prodotto di qualità inferiore rispetto a quanto pubblicizzato.",
+    "reviewer_name": "Giovanna Rizzo",
+    "date": "2026-01-24",
+    "source": "upload",
+    "categories": [
+      "Quality",
+      "Value"
+    ],
+    "summary": "La tavola ricevuta non corrisponde alle foto promozionali, con colori sbiaditi e grafica approssimativa che denotano una qualità inferiore alle aspettative."
+  },
+  {
+    "product_id": "9283655008472",
+    "product_title": "The Hidden Snowboard",
+    "rating": 3,
+    "review_text": "Tavola con buon potenziale ma manca di grip sui bordi in condizioni di ghiaccio. Problema di usabilità significativo per chi scia su piste battute.",
+    "reviewer_name": "Stefano Conti",
+    "date": "2026-02-07",
+    "source": "upload",
+    "categories": [
+      "Usability"
+    ],
+    "summary": "La tavola ha buon potenziale ma presenta problemi di grip sui bordi in condizioni di ghiaccio, rendendola difficile da usare su piste battute."
+  },
+  {
+    "product_id": "9283655008472",
+    "product_title": "The Hidden Snowboard",
+    "rating": 2,
+    "review_text": "Secondo acquisto da questo store e seconda delusione. I tempi di spedizione sono sempre biblici e la comunicazione inesistente. Non tornerò.",
+    "reviewer_name": "Monica Ferretti",
+    "date": "2026-02-14",
+    "source": "upload",
+    "categories": [
+      "Shipping",
+      "Customer Service"
+    ],
+    "summary": "Il cliente è deluso per i tempi di spedizione eccessivamente lunghi e la totale mancanza di comunicazione da parte del venditore."
+  }
+]
