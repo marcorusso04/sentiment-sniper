@@ -8,6 +8,8 @@ import uvicorn
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import RedirectResponse
 from dotenv import load_dotenv
+from billing import create_recurring_charge, activate_charge, verify_webhook_hmac
+import json
 
 load_dotenv()
 
@@ -17,6 +19,9 @@ app = FastAPI(title="Sentiment Sniper")
 SHOPIFY_API_KEY    = os.getenv("SHOPIFY_API_KEY", "")
 SHOPIFY_API_SECRET = os.getenv("SHOPIFY_API_SECRET", "")
 APP_URL            = os.getenv("APP_URL", "http://localhost:8000")
+WEBHOOK_SECRET     = os.environ.get("SHOPIFY_WEBHOOK_SECRET", "")
+BACKEND_URL        = os.environ.get("BACKEND_URL", "https://web-production-1cd3c.up.railway.app")
+FRONTEND_URL       = os.environ.get("FRONTEND_URL", "https://sentiment-sniper-production.up.railway.app")
 SCOPES             ="read_products,read_orders,read_all_orders"
 
 # In-memory nonce store (replace with Redis / DB for production)
@@ -121,11 +126,48 @@ async def callback(request: Request):
     print(f"    Shop:  {shop}")
     print(f"    Token: {access_token}\n")
 
-    return {
-        "status":  "success",
-        "shop":    shop,
-        "message": "Access token obtained. Check your console.",
-    }
+    return RedirectResponse(
+        url=f"{BACKEND_URL}/billing/initiate?shop={shop}&token={access_token}"
+    )
+
+
+@app.get("/billing/initiate")
+async def billing_initiate(shop: str, token: str):
+    return_url = f"{BACKEND_URL}/billing/callback?shop={shop}&token={token}"
+    try:
+        charge = await create_recurring_charge(shop=shop, access_token=token, return_url=return_url)
+    except Exception as e:
+        return {"error": str(e)}
+    return RedirectResponse(url=charge["confirmation_url"])
+
+
+@app.get("/billing/callback")
+async def billing_callback(shop: str, token: str, charge_id: int):
+    try:
+        result = await activate_charge(shop=shop, access_token=token, charge_id=charge_id)
+    except Exception as e:
+        return RedirectResponse(url=f"{FRONTEND_URL}?billing_error=true&shop={shop}")
+    if result["status"] == "active":
+        print(f"[BILLING] ✅ {shop} attivato — charge_id={result['charge_id']}, trial_ends={result['trial_ends_on']}")
+        return RedirectResponse(url=f"{FRONTEND_URL}?shop={shop}&billing=active")
+    else:
+        return RedirectResponse(url=f"{FRONTEND_URL}?billing_error=true&shop={shop}")
+
+
+@app.post("/webhooks/app-uninstalled")
+async def webhook_app_uninstalled(request: Request):
+    from fastapi.responses import JSONResponse
+    body = await request.body()
+    hmac_header = request.headers.get("X-Shopify-Hmac-Sha256", "")
+    if not verify_webhook_hmac(body, hmac_header, WEBHOOK_SECRET):
+        return JSONResponse(status_code=401, content={"error": "HMAC non valido"})
+    try:
+        data = json.loads(body)
+        shop = data.get("myshopify_domain", "unknown")
+        print(f"[WEBHOOK] 🗑️ App disinstallata da: {shop}")
+    except Exception as e:
+        print(f"[WEBHOOK] Errore parsing: {e}")
+    return JSONResponse(status_code=200, content={"ok": True})
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

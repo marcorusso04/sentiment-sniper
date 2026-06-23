@@ -1,0 +1,98 @@
+# 🧾 Guida Billing — Sentiment Sniper
+
+## Cosa hai adesso
+
+- `billing.py` → modulo con tutta la logica Shopify Billing API
+- `main_billing_snippet.py` → i 3 endpoint da incollare in `main.py`
+
+---
+
+## Step 1 — Copia i file nel progetto
+
+```bash
+cd "/Users/marcorusso/Downloads/ sentiment-sniper"
+# copia billing.py nella root del progetto (accanto a main.py)
+```
+
+---
+
+## Step 2 — Modifica `main.py`
+
+1. **Aggiungi gli import** in cima (sezione "AGGIUNGERE AGLI IMPORT")
+2. **Incolla i 3 endpoint** nel corpo dell'app
+3. **Modifica il tuo OAuth callback esistente**: l'ultima riga che ora redirigi
+   a Streamlit, cambiala in:
+   ```python
+   return RedirectResponse(
+       url=f"{BACKEND_URL}/billing/initiate?shop={shop}&token={access_token}"
+   )
+   ```
+
+---
+
+## Step 3 — Variabili d'ambiente su Railway
+
+Nel servizio **FastAPI** su Railway, aggiungi:
+
+| Variabile | Valore |
+|-----------|--------|
+| `BACKEND_URL` | `https://web-production-1cd3c.up.railway.app` |
+| `FRONTEND_URL` | `https://sentiment-sniper-production.up.railway.app` |
+| `SHOPIFY_WEBHOOK_SECRET` | *(vedi Step 5)* |
+
+---
+
+## Step 4 — Registra il webhook app/uninstalled su Shopify
+
+Nel **Partners Dashboard → App → Notifications**, aggiungi:
+
+- **Event**: App uninstalled  
+- **URL**: `https://web-production-1cd3c.up.railway.app/webhooks/app-uninstalled`
+
+Shopify ti darà un **Webhook Secret** → copialo come `SHOPIFY_WEBHOOK_SECRET` su Railway.
+
+---
+
+## Step 5 — Testa nel dev store
+
+Nel file `billing.py`, riga 38, cambia temporaneamente:
+```python
+"test": True,   # ← così non addebita soldi veri
+```
+
+Poi:
+1. Vai su `https://web-production-1cd3c.up.railway.app/auth?shop=sniper-kctxac4d.myshopify.com`
+2. Completa OAuth → vieni rediretto alla pagina Shopify del piano
+3. Accetta → vieni rediretto alla dashboard con `?billing=active`
+
+Quando funziona, rimetti `"test": False` prima di andare in produzione.
+
+---
+
+## Flusso completo post-integrazione
+
+```
+Merchant installa l'app
+        ↓
+OAuth (già funzionante)
+        ↓
+/billing/initiate  → crea charge → redirect Shopify
+        ↓
+Merchant accetta il piano (7 giorni free trial)
+        ↓
+/billing/callback  → attiva charge → redirect dashboard ✅
+```
+
+---
+
+## Prossimo step: Persistenza token
+
+Attualmente l'access_token viene passato come query param nel flusso billing.
+Non è sicuro per la produzione. Quando aggiungi un DB (Postgres su Railway),
+il flusso diventerà:
+
+1. OAuth callback → salva `{shop, access_token}` su DB
+2. `/billing/initiate` → legge token dal DB tramite `shop`
+3. Niente più token in URL
+
+Ma per i primi beta merchant funziona così com'è.
