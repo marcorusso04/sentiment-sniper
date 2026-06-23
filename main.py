@@ -39,6 +39,10 @@ def _verify_hmac(params: dict) -> bool:
         sorted_params.encode("utf-8"),
         hashlib.sha256,
     ).hexdigest()
+    print(f"[HMAC DEBUG] sorted_params: {sorted_params}")
+    print(f"[HMAC DEBUG] computed: {digest}")
+    print(f"[HMAC DEBUG] received: {received_hmac}")
+    print(f"[HMAC DEBUG] match: {hmac.compare_digest(digest, received_hmac)}")
     return hmac.compare_digest(digest, received_hmac)
 
 
@@ -82,6 +86,7 @@ async def login(shop: str | None = None):
 @app.get("/callback")
 async def callback(request: Request):
     params = dict(request.query_params)
+    print(f"[CALLBACK DEBUG] params: {params}")
 
     # 1. Validate HMAC
     if not _verify_hmac(params):
