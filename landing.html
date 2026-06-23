@@ -81,14 +81,29 @@
 <body>
 <nav>
   <div class="logo"><span>Sentiment</span><strong>Sniper</strong></div>
-  <a class="nav-cta" href="https://snipereviews.up.railway.app/login">Install Free</a>
+  <a class="nav-cta" href="#hero">Install Free</a>
 </nav>
-<section class="hero">
+<section class="hero" id="hero">
   <div class="eyebrow">Now in beta · 7-day free trial</div>
   <h1>Know exactly <em>why</em><br/>customers complain</h1>
   <p class="hero-sub">Sentiment Sniper reads your product reviews and tells you whether the problem is quality, shipping, packaging, or something else — in seconds.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://snipereviews.up.railway.app/login">↗ Install on Shopify — free 7 days</a>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:420px;">
+      <div style="display:flex;width:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);background:#13131A;">
+        <input
+          id="shopInput"
+          type="text"
+          placeholder="your-store.myshopify.com"
+          style="flex:1;background:transparent;border:none;outline:none;padding:14px 16px;color:#F0F0F5;font-size:0.9rem;font-family:'Inter',sans-serif;"
+        />
+        <button
+          onclick="installApp('shopInput','shopError')"
+          style="background:linear-gradient(135deg,#7C3AED,#3B82F6);color:#fff;border:none;padding:14px 20px;font-weight:600;font-size:0.9rem;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;"
+        >↗ Install free</button>
+      </div>
+      <span id="shopError" style="color:#F87171;font-size:0.8rem;display:none;">Please enter a valid .myshopify.com domain</span>
+      <span style="color:#8888AA;font-size:0.78rem;">7-day free trial · no card required</span>
+    </div>
     <a class="btn-secondary" href="mailto:marcorusso04@libero.it?subject=Sentiment Sniper Beta Access">Request beta access</a>
   </div>
 </section>
@@ -150,7 +165,22 @@
   <h2>Stop guessing.<br/>Start fixing.</h2>
   <p>7 days free, no card required upfront. Cancel anytime from your Shopify admin.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://snipereviews.up.railway.app/login">↗ Install on Shopify</a>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:420px;">
+      <div style="display:flex;width:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);background:#13131A;">
+        <input
+          id="shopInput2"
+          type="text"
+          placeholder="your-store.myshopify.com"
+          style="flex:1;background:transparent;border:none;outline:none;padding:14px 16px;color:#F0F0F5;font-size:0.9rem;font-family:'Inter',sans-serif;"
+        />
+        <button
+          onclick="installApp('shopInput2','shopError2')"
+          style="background:linear-gradient(135deg,#7C3AED,#3B82F6);color:#fff;border:none;padding:14px 20px;font-weight:600;font-size:0.9rem;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;"
+        >↗ Install free</button>
+      </div>
+      <span id="shopError2" style="color:#F87171;font-size:0.8rem;display:none;">Please enter a valid .myshopify.com domain</span>
+      <span style="color:#8888AA;font-size:0.78rem;">7-day free trial · no card required</span>
+    </div>
     <a class="btn-secondary" href="mailto:marcorusso04@libero.it?subject=Sentiment Sniper Beta">Request beta access</a>
   </div>
 </section>
@@ -158,5 +188,27 @@
   <div class="logo"><span>Sentiment</span><strong>Sniper</strong></div>
   <span>Built for Shopify merchants · 2026</span>
 </footer>
+<script>
+function installApp(inputId, errorId) {
+  const raw = document.getElementById(inputId).value.trim().toLowerCase();
+  const error = document.getElementById(errorId);
+  let shop = raw;
+  if (!shop.includes('.myshopify.com')) {
+    shop = shop.replace(/\.myshopify\.com.*/, '') + '.myshopify.com';
+  }
+  if (!shop.match(/^[a-zA-Z0-9-]+\.myshopify\.com$/)) {
+    error.style.display = 'block';
+    return;
+  }
+  error.style.display = 'none';
+  window.location.href = 'https://snipereviews.up.railway.app/login?shop=' + shop;
+}
+document.getElementById('shopInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') installApp('shopInput', 'shopError');
+});
+document.getElementById('shopInput2').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') installApp('shopInput2', 'shopError2');
+});
+</script>
 </body>
 </html>
