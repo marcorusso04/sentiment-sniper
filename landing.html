@@ -1,12 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Sniper</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentiment Sniper — Know exactly why customers complain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --violet: #7C3AED;
+      --blue: #3B82F6;
+      --bg: #0A0A0F;
+      --surface: #13131A;
+      --border: rgba(255,255,255,0.08);
+      --text: #F0F0F5;
+      --muted: #8888AA;
+      --grad: linear-gradient(135deg, var(--violet), var(--blue));
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-size: 1.15rem; letter-spacing: -0.01em; }
+    .logo span { font-weight: 400; color: var(--text); }
+    .logo strong { font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-cta { font-size: 0.85rem; font-weight: 600; color: #fff; text-decoration: none; background: var(--grad); padding: 8px 20px; border-radius: 8px; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
+    .hero::before { content: ''; position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%); pointer-events: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet); background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.25); padding: 6px 14px; border-radius: 100px; margin-bottom: 32px; }
+    .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--violet); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; max-width: 780px; margin-bottom: 24px; }
+    h1 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 520px; line-height: 1.65; margin-bottom: 48px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--grad); color: #fff; font-weight: 600; font-size: 0.95rem; padding: 14px 28px; border-radius: 10px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(124,58,237,0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,58,237,0.45); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text); font-weight: 500; font-size: 0.95rem; padding: 14px 28px; border-radius: 10px; text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, background 0.2s; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+    .proof { text-align: center; padding: 12px 24px 64px; color: var(--muted); font-size: 0.82rem; letter-spacing: 0.02em; }
+    .problem { max-width: 860px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .problem h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
+    .problem p { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 600px; margin: 0 auto; }
+    .features { max-width: 1060px; margin: 0 auto; padding: 40px 24px 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+    .card:hover { border-color: rgba(124,58,237,0.35); transform: translateY(-3px); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); opacity: 0; transition: opacity 0.2s; }
+    .card:hover::before { opacity: 1; }
+    .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(124,58,237,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px; }
+    .card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .categories { max-width: 860px; margin: 0 auto; padding: 0 24px 100px; text-align: center; }
+    .categories h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .categories p { color: var(--muted); font-size: 0.92rem; margin-bottom: 32px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .pill { font-size: 0.82rem; font-weight: 500; padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); color: var(--text); background: var(--surface); transition: border-color 0.2s, color 0.2s; }
+    .pill:hover { border-color: var(--violet); color: #C4B5FD; }
+    .pricing { max-width: 480px; margin: 0 auto; padding: 0 24px 100px; text-align: center; }
+    .pricing h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 36px; }
+    .price-card { background: var(--surface); border: 1px solid rgba(124,58,237,0.4); border-radius: 20px; padding: 40px 36px; position: relative; overflow: hidden; }
+    .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
+    .price-badge { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A78BFA; background: rgba(124,58,237,0.15); padding: 4px 12px; border-radius: 100px; margin-bottom: 20px; }
+    .price-amount { font-family: 'Syne', sans-serif; font-size: 3.2rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+    .price-amount sup { font-size: 1.4rem; vertical-align: super; font-weight: 600; }
+    .price-period { color: var(--muted); font-size: 0.85rem; margin-bottom: 28px; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 32px; }
+    .price-features li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before { content: '✓'; color: #A78BFA; font-weight: 700; flex-shrink: 0; }
+    .cta-section { text-align: center; padding: 80px 24px 120px; position: relative; }
+    .cta-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .cta-section p { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+    footer { border-top: 1px solid var(--border); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.8rem; }
+    @media (max-width: 600px) { nav { padding: 16px 20px; } footer { flex-direction: column; gap: 10px; text-align: center; } .hero-actions { flex-direction: column; align-items: center; } }
+  </style>
 </head>
 <body>
-    <h1>Sentiment Sniper</h1>
-    <p>AI-powered review analysis for your Shopify store.</p>
+<nav>
+  <div class="logo"><span>Sentiment</span><strong>Sniper</strong></div>
+  <a class="nav-cta" href="https://snipereviews.up.railway.app/login">Install Free</a>
+</nav>
+<section class="hero">
+  <div class="eyebrow">Now in beta · 7-day free trial</div>
+  <h1>Know exactly <em>why</em><br/>customers complain</h1>
+  <p class="hero-sub">Sentiment Sniper reads your product reviews and tells you whether the problem is quality, shipping, packaging, or something else — in seconds.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://snipereviews.up.railway.app/login">↗ Install on Shopify — free 7 days</a>
+    <a class="btn-secondary" href="mailto:marcorusso04@libero.it?subject=Sentiment Sniper Beta Access">Request beta access</a>
+  </div>
+</section>
+<p class="proof">Works with Judge.me · Shopify Reviews · CSV &amp; Excel upload</p>
+<section class="problem">
+  <p class="section-label">The problem</p>
+  <h2>You read 200 reviews.<br/>You still don't know what to fix.</h2>
+  <p>Review apps show you stars and text. They don't tell you that 34% of your 1-star reviews are about shipping, not your product. Sentiment Sniper does.</p>
+</section>
+<section class="features">
+  <div class="card">
+    <div class="card-icon">🎯</div>
+    <h3>8-category classification</h3>
+    <p>Every review gets tagged: Quality, Shipping, Packaging, Usability, Value, Durability, Missing Accessories, or Customer Service. No ambiguity.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">⚡</div>
+    <h3>All your review sources</h3>
+    <p>Pulls directly from Judge.me, Shopify metafields, or any CSV/Excel export. No copy-pasting, no manual work.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <h3>Charts, heatmap, export</h3>
+    <p>See your problem breakdown by product, filter by category, and export a clean Excel report to share with your team or supplier.</p>
+  </div>
+</section>
+<section class="categories">
+  <p class="section-label">What we classify</p>
+  <h2>Every complaint, in its box.</h2>
+  <p>Sentiment Sniper maps every review to one of 8 actionable categories — so you always know where to look next.</p>
+  <div class="pills">
+    <span class="pill">📦 Packaging</span>
+    <span class="pill">🚚 Shipping</span>
+    <span class="pill">⭐ Quality</span>
+    <span class="pill">🔧 Usability</span>
+    <span class="pill">💰 Value</span>
+    <span class="pill">🛡️ Durability</span>
+    <span class="pill">🔩 Missing Accessories</span>
+    <span class="pill">🎧 Customer Service</span>
+  </div>
+</section>
+<section class="pricing">
+  <h2>Simple pricing</h2>
+  <div class="price-card">
+    <div class="price-badge">Pro Plan</div>
+    <div class="price-amount"><sup>€</sup>14.99</div>
+    <div class="price-period">per month · billed by Shopify</div>
+    <ul class="price-features">
+      <li>Unlimited review analysis</li>
+      <li>Judge.me, Shopify &amp; CSV sources</li>
+      <li>Charts, heatmap &amp; Excel export</li>
+      <li>AI-powered classification</li>
+      <li>7-day free trial, cancel anytime</li>
+    </ul>
+    <a class="btn-primary" style="width:100%;justify-content:center;" href="https://snipereviews.up.railway.app/login">Start free trial</a>
+  </div>
+</section>
+<section class="cta-section">
+  <h2>Stop guessing.<br/>Start fixing.</h2>
+  <p>7 days free, no card required upfront. Cancel anytime from your Shopify admin.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://snipereviews.up.railway.app/login">↗ Install on Shopify</a>
+    <a class="btn-secondary" href="mailto:marcorusso04@libero.it?subject=Sentiment Sniper Beta">Request beta access</a>
+  </div>
+</section>
+<footer>
+  <div class="logo"><span>Sentiment</span><strong>Sniper</strong></div>
+  <span>Built for Shopify merchants · 2026</span>
+</footer>
 </body>
 </html>
