@@ -10,10 +10,15 @@ from fastapi.responses import RedirectResponse
 from dotenv import load_dotenv
 from billing import create_recurring_charge, activate_charge, verify_webhook_hmac
 import json
+from database import init_db, save_token, load_token
 
 load_dotenv()
 
 app = FastAPI(title="Sentiment Sniper")
+
+@app.on_event("startup")
+async def startup():
+    init_db()
 
 # ── Config ────────────────────────────────────────────────────────────────────
 SHOPIFY_API_KEY    = os.getenv("SHOPIFY_API_KEY", "")
@@ -128,17 +133,19 @@ async def callback(request: Request):
         raise HTTPException(status_code=502, detail="No access token in Shopify response.")
 
     print(f"\n✅  OAuth complete!")
-    print(f"    Shop:  {shop}")
-    print(f"    Token: {access_token}\n")
-
+    save_token(shop, access_token)
+    print(f"    Token saved to DB for {shop}\n")
     return RedirectResponse(
-        url=f"{BACKEND_URL}/billing/initiate?shop={shop}&token={access_token}"
+        url=f"{BACKEND_URL}/billing/initiate?shop={shop}"
     )
 
 
 @app.get("/billing/initiate")
-async def billing_initiate(shop: str, token: str):
-    return_url = f"{BACKEND_URL}/billing/callback?shop={shop}&token={token}"
+async def billing_initiate(shop: str):
+    token = load_token(shop)
+    if not token:
+        raise HTTPException(status_code=400, detail="No token found for shop.")
+    return_url = f"{BACKEND_URL}/billing/callback?shop={shop}"
     try:
         charge = await create_recurring_charge(shop=shop, access_token=token, return_url=return_url)
     except Exception as e:
@@ -147,7 +154,10 @@ async def billing_initiate(shop: str, token: str):
 
 
 @app.get("/billing/callback")
-async def billing_callback(shop: str, token: str, charge_id: int):
+async def billing_callback(shop: str, charge_id: int):
+    token = load_token(shop)
+    if not token:
+        raise HTTPException(status_code=400, detail="No token found for shop.")
     try:
         result = await activate_charge(shop=shop, access_token=token, charge_id=charge_id)
     except Exception as e:
