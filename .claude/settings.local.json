@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xxd \"/Users/marcorusso/Downloads/ sentiment-sniper/main.py\")"
+      "Bash(xxd \"/Users/marcorusso/Downloads/ sentiment-sniper/main.py\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
     ]
   }
 }
