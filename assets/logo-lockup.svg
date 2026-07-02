@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 48">
+  <defs>
+    <linearGradient id="sniperGradIcon" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="sniperGradText" x1="0" y1="0" x2="240" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- icon mark -->
+  <g>
+    <rect width="48" height="48" rx="10.5" fill="#0A0A0F"/>
+    <circle cx="24" cy="24" r="13.5" fill="none" stroke="url(#sniperGradIcon)" stroke-width="2.6"/>
+    <circle cx="24" cy="24" r="7.5" fill="none" stroke="url(#sniperGradIcon)" stroke-width="2.6" opacity="0.85"/>
+    <circle cx="24" cy="24" r="2.5" fill="url(#sniperGradIcon)"/>
+    <line x1="24" y1="4" x2="24" y2="10" stroke="url(#sniperGradIcon)" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="24" y1="38" x2="24" y2="44" stroke="url(#sniperGradIcon)" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="4" y1="24" x2="10" y2="24" stroke="url(#sniperGradIcon)" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="38" y1="24" x2="44" y2="24" stroke="url(#sniperGradIcon)" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="62" y="30" font-family="'Syne', Arial, sans-serif" font-size="22" letter-spacing="-0.3">
+    <tspan font-weight="400" fill="#F0F0F5">Sentiment</tspan><tspan font-weight="800" fill="url(#sniperGradText)">Sniper</tspan>
+  </text>
+</svg>

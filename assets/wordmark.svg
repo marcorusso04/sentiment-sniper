@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 32">
+  <defs>
+    <linearGradient id="sniperGrad" x1="0" y1="0" x2="210" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="23" font-family="'Syne', Arial, sans-serif" font-size="21" letter-spacing="-0.3">
+    <tspan font-weight="400" fill="#F0F0F5">Sentiment</tspan><tspan font-weight="800" fill="url(#sniperGrad)">Sniper</tspan>
+  </text>
+</svg>

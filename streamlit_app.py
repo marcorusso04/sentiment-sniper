@@ -17,6 +17,39 @@ from analyzer import classify_reviews, aggregate_by_category, aggregate_by_produ
 from judgeme_client import get_all_reviews as jm_get_reviews, normalize_reviews as jm_normalize
 from shopify_reviews_client import get_all_reviews as sp_get_reviews, normalize_reviews as sp_normalize
 
+# ── Brand ─────────────────────────────────────────────────────────────────────
+# Colori, font e badge condivisi con landing.html — vedi BRAND_KIT.md
+
+VIOLET = "#7C3AED"
+BLUE   = "#3B82F6"
+GRAD   = f"linear-gradient(135deg, {VIOLET}, {BLUE})"
+
+CATEGORY_COLORS = {
+    "Quality":             "#7C3AED",
+    "Shipping":            "#3B82F6",
+    "Packaging":           "#F59E0B",
+    "Usability":           "#06B6D4",
+    "Value":               "#10B981",
+    "Durability":          "#EF4444",
+    "Missing Accessories": "#EC4899",
+    "Customer Service":    "#A78BFA",
+}
+
+try:
+    with open("assets/icon.svg") as f:
+        _ICON_SVG_RAW = f.read()
+except FileNotFoundError:
+    _ICON_SVG_RAW = ""
+
+
+def icon_svg(unique_id: str) -> str:
+    """Return the icon markup with a unique gradient id, so it can be
+    embedded more than once on the same page without duplicate SVG ids."""
+    return _ICON_SVG_RAW.replace("sniperGrad", f"sniperGrad-{unique_id}")
+
+
+ICON_SVG = icon_svg("header")
+
 # ── Page config ───────────────────────────────────────────────────────────────
 
 st.set_page_config(
@@ -27,27 +60,55 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    .main-title { font-size: 2.2rem; font-weight: 800; color: #1a1a2e; }
-    .subtitle   { font-size: 1rem; color: #6c757d; margin-top: -10px; }
-    .metric-card {
-        background: #f8f9fa; border-radius: 12px;
-        padding: 20px; text-align: center; border-left: 4px solid #4361ee;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+    html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
+
+    .brand-header { display: flex; align-items: center; gap: 12px; }
+    .brand-icon, .sidebar-icon { width: 40px; height: 40px; }
+    .sidebar-icon { width: 52px; height: 52px; margin: 0 auto 10px; }
+    .brand-icon svg, .sidebar-icon svg { width: 100%; height: 100%; display: block; }
+    .brand-title { font-family: 'Syne', sans-serif; font-size: 1.9rem; letter-spacing: -0.02em; }
+    .brand-title span { font-weight: 400; color: #F0F0F5; }
+    .brand-title strong {
+        font-weight: 800;
+        background: linear-gradient(135deg, #7C3AED, #3B82F6);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .metric-value { font-size: 2rem; font-weight: 700; color: #4361ee; }
-    .metric-label { font-size: 0.85rem; color: #6c757d; margin-top: 4px; }
+    .subtitle { font-size: 0.95rem; color: #8888AA; margin: 4px 0 0 52px; }
+
+    .metric-card {
+        background: #13131A; border: 1px solid rgba(255,255,255,0.08);
+        border-left: 3px solid #7C3AED; border-radius: 12px;
+        padding: 20px; text-align: center;
+    }
+    .metric-value {
+        font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800;
+        background: linear-gradient(135deg, #7C3AED, #3B82F6);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .metric-label { font-size: 0.82rem; color: #8888AA; margin-top: 6px; }
+
     .stButton>button {
-        background-color: #4361ee; color: white;
+        background: linear-gradient(135deg, #7C3AED, #3B82F6); color: #fff;
         border-radius: 8px; border: none;
         padding: 10px 24px; font-weight: 600;
+        box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+        transition: opacity 0.2s;
     }
-    .stButton>button:hover { background-color: #3451d1; }
+    .stButton>button:hover { opacity: 0.88; color: #fff; }
 </style>
 """, unsafe_allow_html=True)
 
 # ── Header ────────────────────────────────────────────────────────────────────
 
-st.markdown('<div class="main-title">🎯 Sentiment Sniper</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Analizza le recensioni negative e trasformale in insight azionabili</div>', unsafe_allow_html=True)
+st.markdown(f"""
+<div class="brand-header">
+    <div class="brand-icon">{ICON_SVG}</div>
+    <div class="brand-title"><span>Sentiment</span><strong>Sniper</strong></div>
+</div>
+<div class="subtitle">Analizza le recensioni negative e trasformale in insight azionabili</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 # ── Session state ─────────────────────────────────────────────────────────────
@@ -77,7 +138,7 @@ def run_async(coro):
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.image("https://img.icons8.com/fluency/96/target.png", width=64)
+    st.markdown(f'<div class="sidebar-icon">{icon_svg("sidebar")}</div>', unsafe_allow_html=True)
     st.markdown("### Fonte Recensioni")
 
     source = st.radio(
@@ -328,6 +389,13 @@ st.divider()
 
 col_left, col_right = st.columns(2)
 
+CHART_LAYOUT = dict(
+    plot_bgcolor="rgba(0,0,0,0)",
+    paper_bgcolor="rgba(0,0,0,0)",
+    font_color="#F0F0F5",
+    legend_font_color="#F0F0F5",
+)
+
 with col_left:
     st.markdown("#### 📊 Problemi per Categoria")
     cat_data = pd.DataFrame([
@@ -335,10 +403,13 @@ with col_left:
         for cat, data in by_cat.items() if data["count"] > 0
     ]).sort_values("Menzioni", ascending=True)
     fig_bar = px.bar(cat_data, x="Menzioni", y="Categoria", orientation="h",
-                     color="Menzioni", color_continuous_scale=["#e8f4f8", "#4361ee"], text="Menzioni")
-    fig_bar.update_traces(textposition="outside")
-    fig_bar.update_layout(showlegend=False, coloraxis_showscale=False,
-                          plot_bgcolor="white", height=380, margin=dict(l=0, r=20, t=10, b=0))
+                     color="Categoria", color_discrete_map=CATEGORY_COLORS, text="Menzioni")
+    fig_bar.update_traces(textposition="outside", textfont_color="#F0F0F5")
+    fig_bar.update_layout(
+        **CHART_LAYOUT, showlegend=False, height=380, margin=dict(l=0, r=20, t=10, b=0),
+        xaxis=dict(gridcolor="rgba(255,255,255,0.08)"),
+        yaxis=dict(gridcolor="rgba(255,255,255,0.08)"),
+    )
     st.plotly_chart(fig_bar, use_container_width=True)
 
 with col_right:
@@ -348,8 +419,8 @@ with col_right:
         for cat, data in by_cat.items() if data["count"] > 0
     ])
     fig_pie = px.pie(cat_pie, names="Categoria", values="Menzioni",
-                     hole=0.45, color_discrete_sequence=px.colors.qualitative.Bold)
-    fig_pie.update_layout(height=380, margin=dict(l=0, r=0, t=10, b=0))
+                     hole=0.45, color="Categoria", color_discrete_map=CATEGORY_COLORS)
+    fig_pie.update_layout(**CHART_LAYOUT, height=380, margin=dict(l=0, r=0, t=10, b=0))
     st.plotly_chart(fig_pie, use_container_width=True)
 
 # ── Heatmap ───────────────────────────────────────────────────────────────────
@@ -365,11 +436,14 @@ for product, data in by_prod.items():
 heatmap_df = pd.DataFrame(heatmap_data).set_index("Prodotto")
 fig_heat = go.Figure(data=go.Heatmap(
     z=heatmap_df.values, x=heatmap_df.columns.tolist(), y=heatmap_df.index.tolist(),
-    colorscale=[[0, "#f0f4ff"], [1, "#4361ee"]],
+    colorscale=[[0, "#13131A"], [0.5, BLUE], [1, VIOLET]],
     text=heatmap_df.values, texttemplate="%{text}", showscale=True,
+    xgap=2, ygap=2,
 ))
-fig_heat.update_layout(height=max(300, len(by_prod) * 50),
-                       margin=dict(l=0, r=0, t=10, b=0), xaxis=dict(side="top"))
+fig_heat.update_layout(
+    **CHART_LAYOUT, height=max(300, len(by_prod) * 50),
+    margin=dict(l=0, r=0, t=10, b=0), xaxis=dict(side="top"),
+)
 st.plotly_chart(fig_heat, use_container_width=True)
 
 st.divider()
@@ -394,7 +468,7 @@ st.divider()
 def build_excel(reviews, by_cat, by_prod) -> bytes:
     wb = Workbook()
     header_font = Font(name="Arial", bold=True, color="FFFFFF", size=11)
-    header_fill = PatternFill("solid", start_color="4361EE")
+    header_fill = PatternFill("solid", start_color="7C3AED")
     center      = Alignment(horizontal="center", vertical="center")
     wrap        = Alignment(wrap_text=True, vertical="top")
     thin        = Border(
@@ -451,7 +525,7 @@ def build_excel(reviews, by_cat, by_prod) -> bytes:
         for cell in row:
             cell.font = Font(name="Arial", size=10); cell.alignment = center; cell.border = thin
             if isinstance(cell.value, int) and cell.value > 0 and cell.column > 3:
-                cell.fill = PatternFill("solid", start_color="DCE8FF")
+                cell.fill = PatternFill("solid", start_color="EDE4FB")
     ws3.freeze_panes = "A2"
 
     output = io.BytesIO()
